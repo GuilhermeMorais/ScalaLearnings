@@ -2,6 +2,9 @@ class Rational(x: Int, y: Int) {
 
   require(y != 0, "denominator must be nonzero")
 
+  // Second constructor
+  def this(x: Int) = this(x, 1)
+
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
   private val commonDenominator = gcd(x, y)
   val numer = x / gcd(x, y)
@@ -15,6 +18,27 @@ class Rational(x: Int, y: Int) {
 
   def less(that: Rational) = this.numer * that.demon < that.numer * this.demon
   def max(that: Rational) = if (this.less(that)) that else this
+}
+
+//Without simplification  on the denominator before hand
+class Rational2(x: Int, y: Int) {
+
+  require(y != 0, "denominator must be nonzero")
+  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  val numer = x
+  val demon = y
+
+  def add(that: Rational2) =
+    new Rational2(numer * that.demon + that.numer * demon, demon * that.demon)
+  def neg: Rational2 = new Rational2(-numer, demon)
+  def sub(that: Rational2) = add(that.neg)
+  override def toString(): String = {
+    val g = gcd(this.numer, this.demon)
+    return s"${numer / g}/${demon / g}"
+  }
+
+  def less(that: Rational2) = this.numer * that.demon < that.numer * this.demon
+  def max(that: Rational2) = if (this.less(that)) that else this
 
 }
 
@@ -29,3 +53,5 @@ x.max(y)
 
 // var strange = new Rational(1, 0) Expected to throw an Illegal Exception
 // strange.add(strange)
+
+new Rational(2)
