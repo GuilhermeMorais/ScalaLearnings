@@ -11,6 +11,7 @@ logs/
 .idea
 .metals
 .vscode
+.bsp
 *.csv
 *.dat
 assignment.sbt
