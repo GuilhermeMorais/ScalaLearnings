@@ -28,3 +28,12 @@ class Square(side: Int) extends Shape with Planar {
   def height: Int = side
   def width: Int = side
 }
+
+//There is a Nothing value on Scala :FacePalm:
+
+//throw an exception: throw Exc
+def error(msg: String) = throw new Error(msg)
+
+//There is a Null class for all refVal classes :FacePalm:
+//val x = null
+//val y: String = x
